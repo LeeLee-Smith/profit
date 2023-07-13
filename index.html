@@ -499,19 +499,13 @@
   <script src="js/favicon_switch.js"></script>
 <script>
   $(document).ready(function () {
-    var link = 'https://fonutoba.sahusamag.com/tracker?offer_id=3858&aff_id=15088';
-    var encryptedLink = window.btoa(link);
-    var decryptedLink = window.atob(encryptedLink);
+    var encryptedLink = "aHR0cHM6Ly9mb251dG9iYS5zYWh1c2FtYWcuY29tL3RyYWNrZXI/b2ZmZXJfaWQ9Mzg1OCZhZmZfaWQ9MTUwODg=";
+    var decryptedLink = decodeURIComponent(escape(window.atob(encryptedLink)));
 
     $('body').find('a').attr('href', decryptedLink).attr('target', '_blank');
-
-    if (window.location.search.indexOf('n=') === -1) {
-      var encryptedParam = encodeURIComponent(encryptedLink);
-      var encryptedURL = window.location.href.split('?')[0] + '?n=' + encryptedParam;
-      window.history.replaceState({}, document.title, encryptedURL);
-    }
   });
 </script>
+
 
   <script>
     let brandName = document.querySelectorAll('.brandName')
