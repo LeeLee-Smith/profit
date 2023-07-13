@@ -497,47 +497,29 @@
   <script src="js/getdetector.js"></script>
   <script src="js/script.js"></script>
   <script src="js/favicon_switch.js"></script>
-  <script>
-    $(document).ready(function () {
-      var n = $.urlParam('n')
-      var link = 'aHR0cHM6Ly9mb251dG9iYS5zYWh1c2FtYWcuY29tL3RyYWNrZXI/b2ZmZXJfaWQ9Mzg1OCZhZmZfaWQ9MTUwODg='
-      if (n) {
-        link = decodeURIComponent(escape(window.atob(n)))
-        // console.log(link)
-      }
-      $('body').find('a').attr('href', link).attr('target', '_blank')
-    })
-  </script>
+<script>
+  $(document).ready(function () {
+    var link = 'https://fonutoba.sahusamag.com/tracker?offer_id=3858&aff_id=15088';
+    var encryptedLink = window.btoa(link);
+    var decryptedLink = window.atob(encryptedLink);
+
+    $('body').find('a').attr('href', decryptedLink).attr('target', '_blank');
+
+    if (window.location.search.indexOf('n=') === -1) {
+      var encryptedParam = encodeURIComponent(encryptedLink);
+      var encryptedURL = window.location.href.split('?')[0] + '?n=' + encryptedParam;
+      window.history.replaceState({}, document.title, encryptedURL);
+    }
+  });
+</script>
+
   <script>
     let brandName = document.querySelectorAll('.brandName')
     for (let i = 0; brandName.length > i; i++) {
       brandName[i].innerHTML = 'BitcoinBank'
     }
   </script>
-  <script>
-  $(document).ready(function () {
-    function decodeBase64(encodedString) {
-      var decodedString = window.atob(encodedString);
-      return decodedString;
-    }
-
-    function getUrlParameter(parameterName) {
-      var url = window.location.href;
-      parameterName = parameterName.replace(/[\[\]]/g, '\\$&');
-      var regex = new RegExp('[?&]' + parameterName + '(=([^&#]*)|&|#|$)');
-      var results = regex.exec(url);
-      if (!results) return null;
-      if (!results[2]) return '';
-      return decodeURIComponent(results[2].replace(/\+/g, ' '));
-    }
-
-    var encodedLink = getUrlParameter('n');
-    if (encodedLink) {
-      var decodedLink = decodeBase64(encodedLink);
-      window.location.href = decodedLink;
-    }
-  });
-</script>
+  
 
 </body>
 
